@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 
 interface ProposalBoxProps {
   accepted: boolean;
@@ -14,6 +14,11 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
     x: 0,
     y: 0,
   });
+  const [cardRotation, setCardRotation] = useState({
+    x: 0,
+    y: 0,
+  });
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const moveNoButton = () => {
     const randomX = Math.floor(Math.random() * 250) - 125;
@@ -25,20 +30,44 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
     });
   };
 
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+
+    setCardRotation({
+      x: -y / rect.height * 18,
+      y: x / rect.width * 18,
+    });
+  };
+
+  const resetCardRotation = () => {
+    setCardRotation({ x: 0, y: 0 });
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.7, rotateX: -20 }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        rotateX: 0,
-      }}
-      transition={{
-        duration: 1,
-        type: "spring",
-      }}
-      className="relative w-[380px] md:w-[520px] min-h-[420px] rounded-[2.5rem] border border-pink-400/20 bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_0_120px_rgba(255,0,170,0.15)]"
-    >
+    <div className="perspective-[1200px]">
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={resetCardRotation}
+        initial={{ opacity: 0, scale: 0.7, rotateX: -20, rotateY: 0 }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          rotateX: cardRotation.x,
+          rotateY: cardRotation.y,
+        }}
+        transition={{
+          duration: 1,
+          type: "spring",
+          stiffness: 120,
+        }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="relative w-[380px] md:w-[520px] min-h-[420px] rounded-[2.5rem] border border-pink-400/20 bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_0_120px_rgba(255,0,170,0.15)]"
+      >
       {/* Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-transparent" />
 
@@ -160,6 +189,7 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
         )}
       </div>
     </motion.div>
+    </div>
   );
 };
 
