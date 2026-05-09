@@ -87,8 +87,7 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
             </p>
 
             {/* Buttons */}
-            <div className="relative mt-14 flex items-center justify-center gap-6 h-24">
-              {/* YES Button */}
+            <div className="mt-14 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <motion.button
                 whileHover={{
                   scale: 1.08,
@@ -102,7 +101,6 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
                 YES 💖
               </motion.button>
 
-              {/* Funny NO Button */}
               <motion.button
                 animate={{
                   x: noPosition.x,
@@ -110,11 +108,12 @@ const ProposalBox = ({ accepted, setAccepted }: ProposalBoxProps) => {
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 300,
+                  stiffness: 250,
                 }}
                 onMouseEnter={moveNoButton}
                 onClick={moveNoButton}
-                className="absolute right-0 px-8 py-4 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-gray-200"
+                type="button"
+                className="px-8 py-4 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-gray-200 shadow-lg shadow-black/10"
               >
                 NO 😭
               </motion.button>

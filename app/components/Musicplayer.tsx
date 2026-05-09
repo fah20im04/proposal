@@ -23,7 +23,7 @@ const MusicPlayer = () => {
   return (
     <>
       {/* Audio */}
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop aria-hidden="true">
         <source src="/music/romantic.mp3" type="audio/mp3" />
       </audio>
 
@@ -47,6 +47,8 @@ const MusicPlayer = () => {
         {/* Button */}
         <button
           onClick={toggleMusic}
+          type="button"
+          aria-pressed={playing}
           className="flex items-center justify-center rounded-full bg-pink-500 p-3 text-white hover:scale-110 transition"
         >
           {playing ? (

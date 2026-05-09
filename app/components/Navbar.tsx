@@ -17,9 +17,18 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex gap-8 text-sm text-gray-300">
-          <a href="#memories">Memories</a>
-          <a href="#letter">Letter</a>
-          <a href="#proposal">Proposal</a>
+          <a href="#home" className="transition hover:text-white">
+            Home
+          </a>
+          <a href="#memories" className="transition hover:text-white">
+            Memories
+          </a>
+          <a href="#letter" className="transition hover:text-white">
+            Letter
+          </a>
+          <a href="#proposal" className="transition hover:text-white">
+            Proposal
+          </a>
         </div>
       </div>
     </motion.nav>

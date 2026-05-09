@@ -11,7 +11,10 @@ import GallerySection from "./components/GallerySection";
 
 export default function HomePage() {
   return (
-    <main className="relative overflow-hidden bg-[#05010d] text-white">
+    <main
+      id="home"
+      className="relative overflow-hidden bg-[#05010d] text-white min-h-screen"
+    >
       {/* Navbar */}
       <Navbar />
 

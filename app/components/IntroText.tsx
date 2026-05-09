@@ -19,8 +19,16 @@ const IntroText = () => {
       </h1>
 
       <p className="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-        A little journey made with love, memories, and emotions.
+        A magical proposal crafted with music, memories, and a heartfelt
+        surprise.
       </p>
+
+      <a
+        href="#memories"
+        className="inline-flex items-center justify-center mt-10 rounded-full border border-white/15 bg-white/10 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-pink-500/10 transition hover:-translate-y-1 hover:bg-pink-500/20"
+      >
+        Explore the story
+      </a>
     </motion.div>
   );
 };

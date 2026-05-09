@@ -12,19 +12,19 @@ const GallerySection = () => {
         Beautiful Memories
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid gap-8 max-w-6xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
         {images.map((img, i) => (
           <motion.div
             key={i}
-            whileHover={{ scale: 1.05 }}
-            className="overflow-hidden rounded-3xl"
+            whileHover={{ scale: 1.03 }}
+            className="overflow-hidden rounded-3xl bg-white/5 shadow-[0_0_60px_rgba(255,0,170,0.08)]"
           >
             <Image
               src={img}
-              alt="memory"
-              width={500}
-              height={600}
-              className="w-full h-[500px] object-cover"
+              alt={`Memory ${i + 1}`}
+              width={700}
+              height={900}
+              className="w-full aspect-[4/5] object-cover"
             />
           </motion.div>
         ))}
